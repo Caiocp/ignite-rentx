@@ -1,6 +1,6 @@
 import React from 'react';
 
-import GasolineSvg from '../../../assets/gasoline.svg';
+import GasolineSvg from '../../assets/gasoline.svg';
 
 import {
   Container,
