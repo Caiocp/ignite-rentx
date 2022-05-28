@@ -18,7 +18,7 @@ export function BackButton({ color, ...rest }: Props) {
       <MaterialIcons
         name="chevron-left"
         size={24}
-        color={color ?? styledTheme.colors.text}
+        color={color ? styledTheme.colors[color] : styledTheme.colors.text}
       />
     </Container>
   );
