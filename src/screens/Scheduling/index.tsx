@@ -1,4 +1,7 @@
 import React from 'react';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+
+import { AppRoutesParamList } from '../../@types/routes/stack.routes';
 import { BackButton } from '../../components/BackButton';
 
 import ArrowSvg from '../../assets/arrow.svg';
@@ -19,6 +22,12 @@ import { Button } from '../../components/Button';
 import { Calendar } from '../../components/Calendar';
 
 export function Scheduling() {
+  const navigation = useNavigation<NavigationProp<AppRoutesParamList>>();
+
+  function handleConfirmRental() {
+    navigation.navigate('SchedulingDetails');
+  }
+
   return (
     <Container>
       <StatusBar style="light" />
@@ -50,7 +59,7 @@ export function Scheduling() {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" />
+        <Button title="Confirmar" onPress={handleConfirmRental} />
       </Footer>
     </Container>
   );

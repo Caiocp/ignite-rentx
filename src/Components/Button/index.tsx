@@ -6,11 +6,12 @@ import { Container, Title } from './styles';
 interface Props {
   title: string;
   color?: keyof typeof theme.colors;
+  onPress?: () => void;
 }
 
-export function Button({ title, color, ...rest }: Props) {
+export function Button({ title, color = 'main', onPress }: Props) {
   return (
-    <Container {...rest} color={color}>
+    <Container color={color} onPress={onPress}>
       <Title>{title}</Title>
     </Container>
   );

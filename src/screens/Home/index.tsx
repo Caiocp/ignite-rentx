@@ -1,13 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import { StatusBar } from 'expo-status-bar';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 
+import { AppRoutesParamList } from '../../@types/routes/stack.routes';
 import { Car } from '../../components/Car';
 
 import Logo from '../../assets/logo.svg';
 import { Container, Header, HeaderContent, TotalCars, CarList } from './styles';
 
 export function Home() {
+  const navigation = useNavigation<NavigationProp<AppRoutesParamList>>();
+
   const carData = {
     id: 1,
     brand: 'Fiat',
@@ -19,6 +23,10 @@ export function Home() {
     thumbnail:
       'https://beta.alpes.one/storage/app/uploads/public/608/ad6/90f/608ad690f418e968296549.png',
   };
+
+  function handleNavigateToCarDetails() {
+    navigation.navigate('CarDetails');
+  }
 
   return (
     <Container>
@@ -34,7 +42,9 @@ export function Home() {
       <CarList
         data={[1, 2, 3, 4, 5, 6, 7]}
         keyExtractor={(item) => String(item)}
-        renderItem={({ item }) => <Car data={carData} />}
+        renderItem={({ item }) => (
+          <Car data={carData} onPress={handleNavigateToCarDetails} />
+        )}
       />
     </Container>
   );

@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+
 import { Accessory } from '../../components/Accessory';
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
@@ -28,8 +30,15 @@ import {
 } from './styles';
 
 import { Button } from '../../components/Button';
+import { AppRoutesParamList } from '../../@types/routes/stack.routes';
 
 export function CarDetails() {
+  const navigation = useNavigation<NavigationProp<AppRoutesParamList>>();
+
+  function handleConfirmRental() {
+    navigation.navigate('Scheduling');
+  }
+
   return (
     <Container>
       <Header>
@@ -77,7 +86,10 @@ export function CarDetails() {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" />
+        <Button
+          title="Escolher período do aluguel"
+          onPress={handleConfirmRental}
+        />
       </Footer>
     </Container>
   );
