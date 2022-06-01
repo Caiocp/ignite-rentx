@@ -32,7 +32,12 @@ export function Scheduling() {
     <Container>
       <StatusBar style="light" />
       <Header>
-        <BackButton onPress={() => {}} color="shape" />
+        <BackButton
+          onPress={() => {
+            navigation.goBack();
+          }}
+          color="shape"
+        />
         <Title>
           Escolha uma{'\n'}
           data de início e{'\n'}

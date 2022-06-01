@@ -42,7 +42,11 @@ export function CarDetails() {
   return (
     <Container>
       <Header>
-        <BackButton onPress={() => {}} />
+        <BackButton
+          onPress={() => {
+            navigation.goBack();
+          }}
+        />
       </Header>
 
       <CarImages>
