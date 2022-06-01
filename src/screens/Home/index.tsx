@@ -18,18 +18,6 @@ export function Home() {
 
   const navigation = useNavigation<NavigationProp<AppRoutesParamList>>();
 
-  const carData = {
-    id: 1,
-    brand: 'Fiat',
-    name: 'Uno',
-    rent: {
-      period: 'Diária',
-      price: 100,
-    },
-    thumbnail:
-      'https://beta.alpes.one/storage/app/uploads/public/608/ad6/90f/608ad690f418e968296549.png',
-  };
-
   function handleNavigateToCarDetails() {
     navigation.navigate('CarDetails');
   }
