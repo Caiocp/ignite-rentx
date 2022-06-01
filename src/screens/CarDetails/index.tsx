@@ -35,7 +35,7 @@ export function CarDetails({ route }: Props) {
   const { car } = route.params;
 
   function handleConfirmRental() {
-    navigation.navigate('Scheduling');
+    navigation.navigate('Scheduling', { car });
   }
 
   return (
