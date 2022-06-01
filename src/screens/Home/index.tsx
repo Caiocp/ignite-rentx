@@ -18,8 +18,8 @@ export function Home() {
 
   const navigation = useNavigation<NavigationProp<AppRoutesParamList>>();
 
-  function handleNavigateToCarDetails() {
-    navigation.navigate('CarDetails');
+  function handleNavigateToCarDetails(car: CarDTO) {
+    navigation.navigate('CarDetails', { car });
   }
 
   async function fetchCars() {
@@ -45,7 +45,7 @@ export function Home() {
         <HeaderContent>
           <Logo width={RFValue(108)} height={RFValue(12)} />
 
-          <TotalCars>Total de 12 carros</TotalCars>
+          <TotalCars>Total de {cars.length} carros</TotalCars>
         </HeaderContent>
       </Header>
       {loading ? (
@@ -55,7 +55,7 @@ export function Home() {
           data={cars}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <Car data={item} onPress={handleNavigateToCarDetails} />
+            <Car data={item} onPress={() => handleNavigateToCarDetails(item)} />
           )}
         />
       )}
