@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
 import { format } from 'date-fns';
-import { Alert } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
 import { AppRoutesParamList } from '../../@types/routes/stack.routes';
@@ -49,11 +48,6 @@ export function Scheduling({ route }: Props) {
   const navigation = useNavigation<NavigationProp<AppRoutesParamList>>();
 
   function handleConfirmRental() {
-    if (!rentalPeriod.startFormatted || !rentalPeriod.endFormatted) {
-      Alert.alert('Selecione um período para a locação');
-      return;
-    }
-
     navigation.navigate('SchedulingDetails', {
       car,
       dates: Object.keys(markedDates),
@@ -125,7 +119,11 @@ export function Scheduling({ route }: Props) {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" onPress={handleConfirmRental} />
+        <Button
+          title="Confirmar"
+          onPress={handleConfirmRental}
+          enabled={!!rentalPeriod.startFormatted}
+        />
       </Footer>
     </Container>
   );

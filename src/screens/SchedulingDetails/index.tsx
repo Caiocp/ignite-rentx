@@ -94,7 +94,6 @@ export function SchedulingDetails({ route }: Props) {
     } catch (error) {
       console.log(error);
       Alert.alert('Erro ao confirmar locação');
-    } finally {
       setLoading(false);
     }
   }
@@ -186,6 +185,8 @@ export function SchedulingDetails({ route }: Props) {
           title="Alugar agora"
           color="success"
           onPress={handleConfirmRental}
+          loading={loading}
+          enabled={!loading}
         />
       </Footer>
     </Container>
