@@ -7,6 +7,10 @@
     "splash": {
       "image": "./assets/splash.png",
       "backgroundColor": "#1B1B1F"
+    },
+    "androidStatusBar": {
+      "backgroundColor": "#1B1B1F",
+      "barStyle": "light-content"
     }
   }
 }

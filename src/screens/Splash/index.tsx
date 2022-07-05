@@ -1,4 +1,5 @@
 import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
 import Animated, {
   useSharedValue,
@@ -58,6 +59,7 @@ export function Splash() {
 
   return (
     <Container>
+      <StatusBar style="light" />
       <Animated.View style={[brandStyle, { position: 'absolute' }]}>
         <BrandSVG width={80} height={50} />
       </Animated.View>
