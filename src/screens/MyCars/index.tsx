@@ -61,7 +61,7 @@ export function MyCars() {
   return (
     <Container>
       <Header>
-        <StatusBar style="dark" />
+        <StatusBar style="light" />
         <BackButton
           onPress={() => {
             navigation.goBack();
