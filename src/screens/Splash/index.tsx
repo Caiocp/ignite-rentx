@@ -1,6 +1,10 @@
-import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
+import {
+  NavigationProp,
+  useNavigation,
+  CommonActions,
+} from '@react-navigation/native';
+import { StatusBar } from 'expo-status-bar';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -46,7 +50,12 @@ export function Splash() {
   });
 
   function startApp() {
-    navigation.navigate('Home');
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 1,
+        routes: [{ name: 'Home' }],
+      })
+    );
   }
 
   useEffect(() => {
