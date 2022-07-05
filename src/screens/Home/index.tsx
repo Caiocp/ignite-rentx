@@ -10,6 +10,7 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated';
 import { PanGestureHandler } from 'react-native-gesture-handler';
+import { useTheme } from 'styled-components';
 
 import { AppRoutesParamList } from '../../@types/routes/stack.routes';
 import { Car } from '../../components/Car';
@@ -26,7 +27,7 @@ import {
 } from './styles';
 import { api } from '../../services/api';
 import { CarDTO } from '../../dtos/CardDTO';
-import { useTheme } from 'styled-components';
+import { AnimatedLoader } from '../../components/AnimatedLoader';
 
 const AnimatedButton = Animated.createAnimatedComponent(MyCarsButton);
 
@@ -98,11 +99,11 @@ export function Home() {
         <HeaderContent>
           <Logo width={RFValue(108)} height={RFValue(12)} />
 
-          <TotalCars>Total de {cars.length} carros</TotalCars>
+          {!loading && <TotalCars>Total de {cars.length} carros</TotalCars>}
         </HeaderContent>
       </Header>
       {loading ? (
-        <Loader />
+        <AnimatedLoader />
       ) : (
         <CarList
           data={cars}
