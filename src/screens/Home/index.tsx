@@ -3,6 +3,13 @@ import { StatusBar } from 'expo-status-bar';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  useAnimatedGestureHandler,
+  withSpring,
+} from 'react-native-reanimated';
+import { PanGestureHandler } from 'react-native-gesture-handler';
 
 import { AppRoutesParamList } from '../../@types/routes/stack.routes';
 import { Car } from '../../components/Car';
@@ -20,6 +27,8 @@ import {
 import { api } from '../../services/api';
 import { CarDTO } from '../../dtos/CardDTO';
 import { useTheme } from 'styled-components';
+
+const AnimatedButton = Animated.createAnimatedComponent(MyCarsButton);
 
 export function Home() {
   const theme = useTheme();
@@ -49,6 +58,35 @@ export function Home() {
     }
   }
 
+  const positionX = useSharedValue(0);
+  const positionY = useSharedValue(0);
+
+  const myCarsButtonStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        { translateX: positionX.value },
+        { translateY: positionY.value },
+      ],
+    };
+  });
+
+  const onGestureEvent = useAnimatedGestureHandler({
+    onStart(_, ctx: any) {
+      ctx.positionX = positionX.value;
+      ctx.positionY = positionY.value;
+    },
+
+    onActive(event, ctx: any) {
+      positionX.value = ctx.positionX + event.translationX;
+      positionY.value = ctx.positionY + event.translationY;
+    },
+
+    onEnd() {
+      positionX.value = withSpring(0);
+      positionY.value = withSpring(0);
+    },
+  });
+
   useEffect(() => {
     fetchCars();
   }, []);
@@ -75,13 +113,17 @@ export function Home() {
         />
       )}
 
-      <MyCarsButton onPress={handleOpenMyCars}>
-        <Ionicons
-          name="ios-car-sport"
-          size={RFValue(32)}
-          color={theme.colors.shape}
-        />
-      </MyCarsButton>
+      <PanGestureHandler onGestureEvent={onGestureEvent}>
+        <Animated.View style={myCarsButtonStyle}>
+          <AnimatedButton onPress={handleOpenMyCars}>
+            <Ionicons
+              name="ios-car-sport"
+              size={RFValue(32)}
+              color={theme.colors.shape}
+            />
+          </AnimatedButton>
+        </Animated.View>
+      </PanGestureHandler>
     </Container>
   );
 }
