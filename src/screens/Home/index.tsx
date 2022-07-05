@@ -14,7 +14,6 @@ import { useTheme } from 'styled-components';
 
 import { AppRoutesParamList } from '../../@types/routes/stack.routes';
 import { Car } from '../../components/Car';
-import { Loader } from '../../components/Loader';
 
 import Logo from '../../assets/logo.svg';
 import {

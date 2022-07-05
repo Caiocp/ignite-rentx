@@ -25,7 +25,6 @@ import {
 import { BackButton } from '../../components/BackButton';
 import { FlatList } from 'react-native-gesture-handler';
 import { Car } from '../../components/Car';
-import { Loader } from '../../components/Loader';
 import { AnimatedLoader } from '../../components/AnimatedLoader';
 
 interface CarProps {
